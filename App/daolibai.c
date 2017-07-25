@@ -4,6 +4,10 @@
 unsigned char Send_Count; //串口需要发送的数据个数
 unsigned char i,temp;          //计数变量
 
+#define DIR_CounterClockwise() {	PBout(12)=0;PBout(13)=1;}
+#define DIR_Clockwise()  {	PBout(12)=0;PBout(13)=1;}
+#define MOTOR_SPEED(x) TIM3_3_SET_DUTY(x)
+
 
 void DataScope(float num)
 {   
@@ -26,6 +30,14 @@ void motor_init(){
 	GPIOB_15_OUT_PP();//init gpio BIN2 PA15
 	TIM3_PWM_INIT_HZ(200,0.5,0,0,0,1);//init pwmb
 }
+
+//speed range[0:1000]
+void set_speed(u8 speed){
+    float speed_duty=speed/1000;
+    MOTOR_SPEED(speed_duty);
+}
+
+
 void daolibai_init(){
 	motor_init();
 	PBout(12)=0;
