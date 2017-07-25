@@ -37,10 +37,10 @@ void TIM2_PWM_INIT(u16 arr,u16 psc);
 void TIM3_PWM_INIT(u16 arr,u16 psc);
 void TIM4_PWM_INIT(u16 arr,u16 psc);
 
-void TIM1_ENABLE_CH(int ch);
-void TIM2_ENABLE_CH(int ch);
-void TIM3_ENABLE_CH(int ch);
-void TIM4_ENABLE_CH(int ch);
+void TIM1_ENA_CH(int ch);
+void TIM2_ENA_CH(int ch);
+void TIM3_ENA_CH(int ch);
+void TIM4_ENA_CH(int ch);
 
 void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
 void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
@@ -57,4 +57,6 @@ void TIM3_1_SET_DUTY(float duty);
 void TIM3_2_SET_DUTY(float duty);
 void TIM3_3_SET_DUTY(float duty);
 void TIM3_4_SET_DUTY(float duty);
+
+void TIM1_SET_FREQ(u8 ch,u32 freq);
 #endif

@@ -10,3 +10,4 @@
 *.bak
 *.plg
 JLinkLog.txt
+*.dep

@@ -11,11 +11,11 @@ int main()
 {
     SYS_CONFIG();
  //   uart1_init(72,115200);
-		daolibai_init();
+		//daolibai_init();
    // JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
 
 
-		while(1){
+		/*while(1){
 			TIM3_4_SET_DUTY(0.2);
 			delay_ms(1000);
 			TIM3_4_SET_DUTY(0.4);
@@ -24,7 +24,14 @@ int main()
 			delay_ms(1000);
 			TIM3_4_SET_DUTY(0.8);
 			delay_ms(1000);
-		}
+		}*/
+    
+  //  TIM1_PWM_INIT(899,0);
+    //TIM1_ENA_CH(1);
+   // TIM1_1_SET_CCR(400);
+   //    TIM1_1_SET_DUTY(1,50);
+   // TIM1_SET_FREQ(1,1000);
+    while(1);
 }
 
 

@@ -5,6 +5,33 @@
 
 #include"pwm.h"
 
+//range[0.2HZ,24MHZ]
+void TIM1_SET_FREQ(u8 ch,u32 freq){
+    if(freq<=1000){
+        u16 psc=7199;
+        u16 arr=10000/freq;
+
+       // TIM1_1_SET_CCR(arr/2);
+        
+        TIM1_PWM_INIT(arr,7199);
+
+        TIM1_1_SET_CCR(arr/2 );
+    }
+    else if(freq<=10000){
+        u16 psc=71;
+        u16 arr=1000000/freq;
+        TIM1->PSC=psc;
+        TIM1->ARR=arr;
+        TIM1_1_SET_CCR(arr/2);
+    }
+    else if(freq<=24000000){
+        u16 psc=1;
+        u16 arr=48000000/freq;
+        TIM1->PSC=psc;
+        TIM1->ARR=arr;
+        TIM1_1_SET_CCR(arr/2);
+    }
+}
 
 void TIM1_PWM_INIT(u16 arr,u16 psc){
     RCC->APB2ENR|=1<<11;  //Enable The Timer1 CLK
@@ -45,19 +72,19 @@ void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM1_PWM_INIT(set_arr-1,7199);
 	
 	if(ch1==1){
-		TIM1_ENABLE_CH(1);
+		TIM1_ENA_CH(1);
 		TIM1_1_SET_CCR((u16)(set_arr*duty) );
 	}
 	if(ch2==1){
-		TIM1_ENABLE_CH(2);
+		TIM1_ENA_CH(2);
 		TIM1_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM1_ENABLE_CH(3);
+		TIM1_ENA_CH(3);
 		TIM1_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM1_ENABLE_CH(4);
+		TIM1_ENA_CH(4);
 		TIM1_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -67,19 +94,19 @@ void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM2_PWM_INIT(set_arr-1,7199);
 	
 	if(ch1==1){
-		TIM2_ENABLE_CH(1);
+		TIM2_ENA_CH(1);
 		TIM2_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM2_ENABLE_CH(2);
+		TIM2_ENA_CH(2);
 		TIM2_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM2_ENABLE_CH(3);
+		TIM2_ENA_CH(3);
 		TIM2_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM2_ENABLE_CH(4);
+		TIM2_ENA_CH(4);
 		TIM2_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -89,19 +116,19 @@ void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM3_PWM_INIT(set_arr-1,7199);
 	
 	if(ch1==1){
-		TIM3_ENABLE_CH(1);
+		TIM3_ENA_CH(1);
 		TIM3_1_SET_CCR( (u16)(set_arr*duty) );
 	}
 	if(ch2==1){
-		TIM3_ENABLE_CH(2);
+		TIM3_ENA_CH(2);
 		TIM3_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM3_ENABLE_CH(3);
+		TIM3_ENA_CH(3);
 		TIM3_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM3_ENABLE_CH(4);
+		TIM3_ENA_CH(4);
 		TIM3_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -111,19 +138,19 @@ void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM4_PWM_INIT(set_arr-1,7199);
 	
 	if(ch1==1){
-		TIM4_ENABLE_CH(1);
+		TIM4_ENA_CH(1);
 		TIM4_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM4_ENABLE_CH(2);
+		TIM4_ENA_CH(2);
 		TIM4_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM4_ENABLE_CH(3);
+		TIM4_ENA_CH(3);
 		TIM4_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM4_ENABLE_CH(4);
+		TIM4_ENA_CH(4);
 		TIM4_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -163,19 +190,19 @@ void TIM1_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM1_PWM_INIT(set_arr-1,719);
 	
 	if(ch1==1){
-		TIM1_ENABLE_CH(1);
+		TIM1_ENA_CH(1);
 		TIM1_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM1_ENABLE_CH(2);
+		TIM1_ENA_CH(2);
 		TIM1_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM1_ENABLE_CH(3);
+		TIM1_ENA_CH(3);
 		TIM1_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM1_ENABLE_CH(4);
+		TIM1_ENA_CH(4);
 		TIM1_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -185,19 +212,19 @@ void TIM2_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM2_PWM_INIT(set_arr-1,719);
 	
 	if(ch1==1){
-		TIM2_ENABLE_CH(1);
+		TIM2_ENA_CH(1);
 		TIM2_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM2_ENABLE_CH(2);
+		TIM2_ENA_CH(2);
 		TIM2_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM2_ENABLE_CH(3);
+		TIM2_ENA_CH(3);
 		TIM2_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM2_ENABLE_CH(4);
+		TIM2_ENA_CH(4);
 		TIM2_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -207,19 +234,19 @@ void TIM3_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM3_PWM_INIT(set_arr-1,719);
 	
 	if(ch1==1){
-		TIM3_ENABLE_CH(1);
+		TIM3_ENA_CH(1);
 		TIM3_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM3_ENABLE_CH(2);
+		TIM3_ENA_CH(2);
 		TIM3_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM3_ENABLE_CH(3);
+		TIM3_ENA_CH(3);
 		TIM3_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM3_ENABLE_CH(4);
+		TIM3_ENA_CH(4);
 		TIM3_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
@@ -229,24 +256,24 @@ void TIM4_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	TIM4_PWM_INIT(set_arr-1,719);
 	
 	if(ch1==1){
-		TIM4_ENABLE_CH(1);
+		TIM4_ENA_CH(1);
 		TIM4_1_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch2==1){
-		TIM4_ENABLE_CH(2);
+		TIM4_ENA_CH(2);
 		TIM4_2_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch3==1){
-		TIM4_ENABLE_CH(3);
+		TIM4_ENA_CH(3);
 		TIM4_3_SET_CCR((u16)(set_arr*duty));
 	}
 	if(ch4==1){
-		TIM4_ENABLE_CH(4);
+		TIM4_ENA_CH(4);
 		TIM4_4_SET_CCR((u16)(set_arr*duty));
 	}
 }
 
-void TIM1_ENABLE_CH(int ch){
+void TIM1_ENA_CH(int ch){
 	switch(ch){
 		case(1):{
 			GPIOA_CLK_ENA();
@@ -284,7 +311,7 @@ void TIM1_ENABLE_CH(int ch){
 }
 
 
-void TIM2_ENABLE_CH(int ch){
+void TIM2_ENA_CH(int ch){
 	switch(ch){
 		case(1):{
 			GPIOA_0_OUT_AFPP();     //Set A0 speed:50Mhz mode:Alternate function output Push-pull
@@ -317,7 +344,7 @@ void TIM2_ENABLE_CH(int ch){
 	}
 }
 
-void TIM3_ENABLE_CH(int ch){
+void TIM3_ENA_CH(int ch){
 	switch(ch){
 		case(1):{
 			GPIOA_6_OUT_AFPP();    //Set A6 speed:50Mhz mode:Alternate function output Push-pull
@@ -353,7 +380,7 @@ void TIM3_ENABLE_CH(int ch){
 
 
 
-void TIM4_ENABLE_CH(int ch){
+void TIM4_ENA_CH(int ch){
 	switch(ch){
 		case(1):{
 			GPIOB_6_OUT_AFPP();  //Set B6 speed:50Mhz mode:Alternate function output Push-pull

@@ -1,5 +1,5 @@
 Dependencies for Project 'TEST', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5976CBE3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\main.o --omf_browse ..\listing\main.crf --depend ..\listing\main.d)
+F (.\main.c)(0x59770632)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\main.o --omf_browse ..\listing\main.crf --depend ..\listing\main.d)
 I (..\CMSIS\stm32f10x.h)(0x4D783CB4)
 I (..\CMSIS\core_cm3.h)(0x4D523B58)
 I (d:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -12,7 +12,7 @@ I (..\SYS\uart\usart.h)(0x5976A4B7)
 I (d:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (d:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C7B744)
 I (d:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7B744)
-I (..\SYS\pwm\pwm.h)(0x5976D294)
+I (..\SYS\pwm\pwm.h)(0x59771040)
 I (..\SYS\gpio\gpio.h)(0x5976BC54)
 I (..\SYS\timer\timer.h)(0x59769F6B)
 I (..\UpperComputer\DataScope_DP.h)(0x5546F78E)
@@ -51,8 +51,8 @@ I (..\CMSIS\core_cm3.h)(0x4D523B58)
 I (d:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
 I (..\CMSIS\system_stm32f10x.h)(0x4D783CAA)
 I (..\SYS\stm32f10x_conf.h)(0x59769E08)
-F (..\SYS\pwm\pwm.c)(0x5976D07B)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\pwm.o --omf_browse ..\listing\pwm.crf --depend ..\listing\pwm.d)
-I (..\SYS\pwm\pwm.h)(0x5976D294)
+F (..\SYS\pwm\pwm.c)(0x59770611)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\pwm.o --omf_browse ..\listing\pwm.crf --depend ..\listing\pwm.d)
+I (..\SYS\pwm\pwm.h)(0x59771040)
 I (..\CMSIS\stm32f10x.h)(0x4D783CB4)
 I (..\CMSIS\core_cm3.h)(0x4D523B58)
 I (d:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -95,7 +95,7 @@ I (..\SYS\misc\misc.h)(0x4D783BB4)
 I (d:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (d:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C7B744)
 I (d:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7B744)
-I (..\SYS\pwm\pwm.h)(0x5976D294)
+I (..\SYS\pwm\pwm.h)(0x59771040)
 I (..\SYS\gpio\gpio.h)(0x5976BC54)
 I (..\SYS\timer\timer.h)(0x59769F6B)
 I (..\SYS\adc\adc.h)(0x59769F1C)
@@ -109,6 +109,22 @@ I (..\CMSIS\system_stm32f10x.h)(0x4D783CAA)
 I (..\SYS\stm32f10x_conf.h)(0x59769E08)
 I (..\SYS\misc\misc.h)(0x4D783BB4)
 F (..\CMSIS\startup\startup_stm32f10x_hd.s)(0x4D783CDE)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x--list ..\listing\startup_stm32f10x_hd.lst --xref -o ..\listing\startup_stm32f10x_hd.o --depend ..\listing\startup_stm32f10x_hd.d)
+F (..\HARDWARE\encoder\encoder.c)(0x59771080)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\encoder.o --omf_browse ..\listing\encoder.crf --depend ..\listing\encoder.d)
+I (..\HARDWARE\encoder\encoder.h)(0x56EE4AB1)
+I (..\SYS\sys.h)(0x59769EC6)
+I (..\SYS\delay\delay.h)(0x51D69A98)
+I (..\SYS\uart\usart.h)(0x5976A4B7)
+I (..\CMSIS\stm32f10x.h)(0x4D783CB4)
+I (..\CMSIS\core_cm3.h)(0x4D523B58)
+I (d:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
+I (..\CMSIS\system_stm32f10x.h)(0x4D783CAA)
+I (..\SYS\stm32f10x_conf.h)(0x59769E08)
+I (..\SYS\misc\misc.h)(0x4D783BB4)
+I (d:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
+I (d:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C7B744)
+I (d:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7B744)
+I (..\SYS\pwm\pwm.h)(0x59771040)
+I (..\SYS\gpio\gpio.h)(0x5976BC54)
 F (..\App\daolibai.c)(0x5976BC96)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\daolibai.o --omf_browse ..\listing\daolibai.crf --depend ..\listing\daolibai.d)
 I (..\App\daolibai.h)(0x59769F81)
 I (..\SYS\gpio\gpio.h)(0x5976BC54)
@@ -121,7 +137,7 @@ I (..\SYS\misc\misc.h)(0x4D783BB4)
 I (..\UpperComputer\DataScope_DP.h)(0x5546F78E)
 I (..\SYS\adc\adc.h)(0x59769F1C)
 I (..\SYS\delay\delay.h)(0x51D69A98)
-I (..\SYS\pwm\pwm.h)(0x5976D294)
+I (..\SYS\pwm\pwm.h)(0x59771040)
 F (..\UpperComputer\DataScope_DP.C)(0x55732462)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\datascope_dp.o --omf_browse ..\listing\datascope_dp.crf --depend ..\listing\datascope_dp.d)
 I (..\UpperComputer\DataScope_DP.h)(0x5546F78E)
 F (..\Interupt\timer2_IRQ.c)(0x59769F64)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\USER -I..\HARDWARE -I..\App -I..\SYS\adc -I..\SYS\delay -I..\SYS\gpio -I..\SYS\misc -I..\SYS\pwm -I..\SYS\sys -I..\SYS\timer -I..\SYS\uart -I..\UpperComputer -I..\Interupt -I..\SYS-I d:\Keil\ARM\RV31\INC-I d:\Keil\ARM\CMSIS\Include-I d:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o ..\listing\timer2_irq.o --omf_browse ..\listing\timer2_irq.crf --depend ..\listing\timer2_irq.d)
