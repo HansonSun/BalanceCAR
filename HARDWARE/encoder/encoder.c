@@ -1,38 +1,36 @@
+//Timer2 CH1:PA0  CH2:PA1  CH3:PA2  CH4:PA3
+//Timer3 CH1:PA6  CH2:PA7  CH3:PB0  CH4:PB1
+//Timer4 CH1:PB6  CH2:PB7  CH3:PB8  CH4:PB9
+//Timer1 CH1:PA8  CH2:PA9  CH3:PA10 CH4:PA11
+
 #include "encoder.h"
-  /**************************************************************************
-作者：平衡小车之家
-我的淘宝小店：http://shop114407458.taobao.com/
-**************************************************************************/
-/**************************************************************************
-函数功能：把TIM2初始化为编码器接口模式
-入口参数：无
-返回  值：无
-**************************************************************************/
+
 void Encoder_Init_TIM2(void)
 {
-	RCC->APB1ENR|=1<<0;     //TIM2时钟使能
-	RCC->APB2ENR|=1<<2;    //使能PORTA时钟
+	RCC->APB1ENR|=1<<0;     //enable the tim1 clk
+	RCC->APB2ENR|=1<<2;    //enable the gpioa clk
 	GPIOA->CRL&=0XFFFFFF00;//PA0 PA1
-	GPIOA->CRL|=0X00000044;//浮空输入
-	/* 把定时器初始化为编码器模式 */ 
-	TIM2->DIER|=1<<0;   //允许更新中断				
-	TIM2->DIER|=1<<6;   //允许触发中断
-//	MY_NVIC_Init(1,3,TIM2_IRQn,1);
+	GPIOA->CRL|=0X00000044;//set a0 a1 to float in
 
+	TIM2->DIER|=1<<0;   //enable the update interupt	
+	TIM2->DIER|=1<<6;   //enable the trigger interupt
+	
 	/* Timer configuration in Encoder mode */ 
-	TIM2->PSC = 0x0;//预分频器
-	TIM2->ARR = ENCODER_TIM_PERIOD;//设定计数器自动重装值 
-	TIM2->CR1 &=~(3<<8);// 选择时钟分频：不分频
-	TIM2->CR1 &=~(3<<5);// 选择计数模式:边沿对齐模式
+	TIM2->PSC = 0x0;	//set tim2 psc
+	TIM2->ARR = ENCODER_TIM_PERIOD;//set tim2 arr
+	TIM2->CR1 &=~(3<<8);// do not divide frequent
+	TIM2->CR1 &=~(3<<5);// edge align mode
 		
-	TIM2->CCMR1 |= 1<<0; //CC1S='01' IC1FP1映射到TI1
-	TIM2->CCMR1 |= 1<<8; //CC2S='01' IC2FP2映射到TI2
-	TIM2->CCER &= ~(1<<1);	 //CC1P='0'	 IC1FP1不反相，IC1FP1=TI1
-	TIM2->CCER &= ~(1<<5);	 //CC2P='0'	 IC2FP2不反相，IC2FP2=TI2
+	TIM2->CCMR1 |= 1<<0; //IC1 is mapped on TI1.
+	TIM2->CCMR1 |= 1<<8; //IC2 is mapped on TI2.
+	
+	TIM2->CCER &= ~(1<<1);	 //non-inverted
+	TIM2->CCER &= ~(1<<5);	 //non-inverted
+	
 	TIM2->CCMR1 |= 3<<4; //	IC1F='1000' 输入捕获1滤波器
 	TIM2->SMCR |= 3<<0;	 //SMS='011' 所有的输入均在上升沿和下降沿有效
-	TIM2->CNT = 10000;
-	TIM2->CR1 |= 0x01;    //CEN=1，使能定时器
+	TIM2->CNT = 10000;   //THIS is the start num for you
+	TIM2->CR1 |= 0x01;    //enable the tim2
 }
 /**************************************************************************
 函数功能：把TIM4初始化为编码器接口模式
@@ -94,7 +92,8 @@ int Read_Encoder(u8 TIMX)
 	 }
 		return Encoder_TIM;
 }
-/*
+
+
 void TIM4_IRQHandler(void)
 { 		    		  			    
 	if(TIM4->SR&0X0001)//溢出中断
@@ -111,4 +110,3 @@ void TIM2_IRQHandler(void)
 	}				   
 	TIM2->SR&=~(1<<0);//清除中断标志位 	    
 }
-*/

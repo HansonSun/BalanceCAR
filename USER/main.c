@@ -10,7 +10,7 @@
 int main()
 {
     SYS_CONFIG();
- //   uart1_init(72,115200);
+    Uart1_init(72,115200);
 		//daolibai_init();
    // JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
 
@@ -31,7 +31,12 @@ int main()
    // TIM1_1_SET_CCR(400);
    //    TIM1_1_SET_DUTY(1,50);
    // TIM1_SET_FREQ(1,1000);
-    while(1);
+	 Encoder_Init_TIM2( );
+    while(1)
+		{
+			delay_ms(500);
+			newprintf(1,"%d\n",TIM2->CNT);
+		}
 }
 
 

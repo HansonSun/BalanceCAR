@@ -3,7 +3,7 @@
 
 int theflag2=0;
 
-void TIM2_IRQHandler(void)
+/*void TIM2_IRQHandler(void)
 {
 	if(TIM2->SR&0X0001) {
 		TIM2->SR&=~(1<<0);
@@ -18,5 +18,5 @@ void TIM2_IRQHandler(void)
 	
 	}
 	
-}
+}*/
 

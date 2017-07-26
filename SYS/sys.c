@@ -10,7 +10,7 @@ void NVIC_CONFIG(void)
 	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);	  	//中断分组初始化
 	//代表有2个占先式优先级和8个从优先级
-	NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;  //TIM3中断
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;  //TIM3中断
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //占先优先级2级
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  //从优先级0级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
