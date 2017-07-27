@@ -74,7 +74,6 @@ void print_hex(int uart_num,unsigned int hex){
 
 
 void print_float(int uart_num,double flt){
-    int icnt = 0;
     int tmpint = 0;
     tmpint = (int)flt;
     print_int(uart_num,tmpint);
