@@ -11,8 +11,6 @@ void TIM1_SET_FREQ(u8 ch,u32 freq){
     if(freq<=1000){
         u16 psc=7199;
         u16 arr=10000/freq;
-
-       // TIM1_1_SET_CCR(arr/2);
         
         TIM1_PWM_INIT(arr,7199);
 
@@ -69,90 +67,162 @@ void TIM4_PWM_INIT(u16 arr,u16 psc){
 
 
 void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(time_ms*10.0);
-	TIM1_PWM_INIT(set_arr-1,7199);
-	
+	u16 psc=0;
+    u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+     
+    TIM1_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM1_ENA_CH(1);
-		TIM1_1_SET_CCR((u16)(set_arr*duty) );
+		TIM1_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM1_ENA_CH(2);
-		TIM1_2_SET_CCR((u16)(set_arr*duty));
+		TIM1_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM1_ENA_CH(3);
-		TIM1_3_SET_CCR((u16)(set_arr*duty));
+		TIM1_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM1_ENA_CH(4);
-		TIM1_4_SET_CCR((u16)(set_arr*duty));
+		TIM1_4_SET_CCR(arr/2);
 	}
 }
 
 void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(time_ms*10.0);
-	TIM2_PWM_INIT(set_arr-1,7199);
-	
+	u16 psc=0;
+    u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+     
+    TIM2_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM2_ENA_CH(1);
-		TIM2_1_SET_CCR((u16)(set_arr*duty));
+		TIM2_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM2_ENA_CH(2);
-		TIM2_2_SET_CCR((u16)(set_arr*duty));
+		TIM2_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM2_ENA_CH(3);
-		TIM2_3_SET_CCR((u16)(set_arr*duty));
+		TIM2_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM2_ENA_CH(4);
-		TIM2_4_SET_CCR((u16)(set_arr*duty));
+		TIM2_4_SET_CCR(arr/2);
 	}
 }
 
 void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(time_ms*10.0);
-	TIM3_PWM_INIT(set_arr-1,7199);
-	
+	u16 psc=0;
+    u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+     
+    TIM3_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM3_ENA_CH(1);
-		TIM3_1_SET_CCR( (u16)(set_arr*duty) );
+		TIM3_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM3_ENA_CH(2);
-		TIM3_2_SET_CCR((u16)(set_arr*duty));
+		TIM3_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM3_ENA_CH(3);
-		TIM3_3_SET_CCR((u16)(set_arr*duty));
+		TIM3_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM3_ENA_CH(4);
-		TIM3_4_SET_CCR((u16)(set_arr*duty));
+		TIM3_4_SET_CCR(arr/2);
 	}
 }
 
 void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(time_ms*10.0);
-	TIM4_PWM_INIT(set_arr-1,7199);
-	
+	u16 psc=0;
+    u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+     
+    TIM4_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM4_ENA_CH(1);
-		TIM4_1_SET_CCR((u16)(set_arr*duty));
+		TIM4_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM4_ENA_CH(2);
-		TIM4_2_SET_CCR((u16)(set_arr*duty));
+		TIM4_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM4_ENA_CH(3);
-		TIM4_3_SET_CCR((u16)(set_arr*duty));
+		TIM4_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM4_ENA_CH(4);
-		TIM4_4_SET_CCR((u16)(set_arr*duty));
+		TIM4_4_SET_CCR(arr/2);
 	}
 }
 
@@ -186,98 +256,175 @@ void TIM3_4_SET_DUTY(float duty){
 
 }
 
-void TIM1_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(100000/hz);
-	TIM1_PWM_INIT(set_arr-1,719);
-	
+
+void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+    u16 psc=0;
+    u16 arr=0;	
+    
+    if(freqhz<=10){
+        psc=1999;
+        arr=36000/freqhz;
+    }
+    else if(freqhz<=100){
+        psc=119;
+        arr=600000/freqhz;
+    }
+    else if(freqhz<=1100){
+        psc=11;
+        arr=6000000/freqhz;
+    }
+    else{
+        psc=0;
+        arr=72000000/freqhz;
+    }
+     
+    TIM1_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM1_ENA_CH(1);
-		TIM1_1_SET_CCR((u16)(set_arr*duty));
+		TIM1_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM1_ENA_CH(2);
-		TIM1_2_SET_CCR((u16)(set_arr*duty));
+		TIM1_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM1_ENA_CH(3);
-		TIM1_3_SET_CCR((u16)(set_arr*duty));
+		TIM1_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM1_ENA_CH(4);
-		TIM1_4_SET_CCR((u16)(set_arr*duty));
+		TIM1_4_SET_CCR(arr/2);
 	}
 }
 
-void TIM2_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(100000/hz);
-	TIM2_PWM_INIT(set_arr-1,719);
-	
+void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+    u16 psc=0;
+    u16 arr=0;	
+    
+    if(freqhz<=10){
+        psc=1999;
+        arr=36000/freqhz;
+    }
+    else if(freqhz<=100){
+        psc=119;
+        arr=600000/freqhz;
+    }
+    else if(freqhz<=1100){
+        psc=11;
+        arr=6000000/freqhz;
+    }
+    else{
+        psc=0;
+        arr=72000000/freqhz;
+    }
+     
+    TIM2_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM2_ENA_CH(1);
-		TIM2_1_SET_CCR((u16)(set_arr*duty));
+		TIM2_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM2_ENA_CH(2);
-		TIM2_2_SET_CCR((u16)(set_arr*duty));
+		TIM2_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM2_ENA_CH(3);
-		TIM2_3_SET_CCR((u16)(set_arr*duty));
+		TIM2_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM2_ENA_CH(4);
-		TIM2_4_SET_CCR((u16)(set_arr*duty));
+		TIM2_4_SET_CCR(arr/2);
 	}
 }
 
-void TIM3_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(100000/hz);
-	TIM3_PWM_INIT(set_arr-1,719);
-	
+
+void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+    u16 psc=0;
+    u16 arr=0;	
+    
+    if(freqhz<=10){
+        psc=1999;
+        arr=36000/freqhz;
+    }
+    else if(freqhz<=100){
+        psc=119;
+        arr=600000/freqhz;
+    }
+    else if(freqhz<=1100){
+        psc=11;
+        arr=6000000/freqhz;
+    }
+    else{
+        psc=0;
+        arr=72000000/freqhz;
+    }
+     
+    TIM3_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM3_ENA_CH(1);
-		TIM3_1_SET_CCR((u16)(set_arr*duty));
+		TIM3_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM3_ENA_CH(2);
-		TIM3_2_SET_CCR((u16)(set_arr*duty));
+		TIM3_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM3_ENA_CH(3);
-		TIM3_3_SET_CCR((u16)(set_arr*duty));
+		TIM3_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM3_ENA_CH(4);
-		TIM3_4_SET_CCR((u16)(set_arr*duty));
+		TIM3_4_SET_CCR(arr/2);
 	}
 }
 
-void TIM4_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 set_arr=(u16)(100000/hz);
-	TIM4_PWM_INIT(set_arr-1,719);
-	
+
+void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+    u16 psc=0;
+    u16 arr=0;	
+    
+    if(freqhz<=10){
+        psc=1999;
+        arr=36000/freqhz;
+    }
+    else if(freqhz<=100){
+        psc=119;
+        arr=600000/freqhz;
+    }
+    else if(freqhz<=1100){
+        psc=11;
+        arr=6000000/freqhz;
+    }
+    else{
+        psc=0;
+        arr=72000000/freqhz;
+    }
+     
+    TIM4_PWM_INIT(arr-1,psc);
 	if(ch1==1){
 		TIM4_ENA_CH(1);
-		TIM4_1_SET_CCR((u16)(set_arr*duty));
+		TIM4_1_SET_CCR(arr/2);
 	}
 	if(ch2==1){
 		TIM4_ENA_CH(2);
-		TIM4_2_SET_CCR((u16)(set_arr*duty));
+		TIM4_2_SET_CCR(arr/2);
 	}
 	if(ch3==1){
 		TIM4_ENA_CH(3);
-		TIM4_3_SET_CCR((u16)(set_arr*duty));
+		TIM4_3_SET_CCR(arr/2);
 	}
 	if(ch4==1){
 		TIM4_ENA_CH(4);
-		TIM4_4_SET_CCR((u16)(set_arr*duty));
+		TIM4_4_SET_CCR(arr/2);
 	}
 }
+
+
 
 void TIM1_ENA_CH(int ch){
 	switch(ch){
 		case(1):{
-			GPIOA_CLK_ENA();
+			GPIOA_CLK_EN
 			GPIOA_8_OUT_AFPP();      //Set A8 speed:50Mhz mode:Alternate function output Push-pull
 			TIM1->CCMR1|=6<<4;  	 //Set pwm in mode 2	
 			TIM1->CCMR1|=1<<3; 	 	 //preload mode enable
@@ -285,7 +432,7 @@ void TIM1_ENA_CH(int ch){
 		break;
 		}
 		case(2):{
-			GPIOA_CLK_ENA();
+			GPIOA_CLK_EN
 			GPIOA_9_OUT_AFPP();	     //Set A9 speed:50Mhz mode:Alternate function output Push-pull
 			TIM1->CCMR1|=6<<12;  	 //Set pwm in mode 2	
 			TIM1->CCMR1|=1<<11; 	 //preload mode enable
@@ -293,7 +440,7 @@ void TIM1_ENA_CH(int ch){
 		break;
 		}
 		case(3):{
-			GPIOA_CLK_ENA();
+			GPIOA_CLK_EN
             GPIOA_10_OUT_AFPP();    //Set A10 speed:50Mhz mode:Alternate function output Push-pull
 			TIM1->CCMR2|=6<<4;  	//Set pwm in mode 2	
 			TIM1->CCMR2|=1<<3; 	 	//preload mode enable
@@ -301,7 +448,7 @@ void TIM1_ENA_CH(int ch){
 		break;
 		}
 		case(4):{
-			GPIOA_CLK_ENA();
+			GPIOA_CLK_EN
 			GPIOA_11_OUT_AFPP();	//Set A11 speed:50Mhz mode:Alternate function output Push-pull
 			TIM1->CCMR2|=6<<12;  	//Set pwm in mode 2	
 			TIM1->CCMR2|=1<<11; 	//preload mode enable

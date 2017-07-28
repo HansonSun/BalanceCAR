@@ -9,6 +9,7 @@
 
 #include<stm32f10x.h>
 #include "gpio.h"
+#include "sys.h"
 
 #define TIM1_1_SET_CCR(x) TIM1->CCR1=x
 #define TIM1_2_SET_CCR(x) TIM1->CCR2=x
@@ -47,10 +48,10 @@ void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
 void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
 void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
 
-void TIM1_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM2_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM3_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM4_PWM_INIT_HZ(int hz,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
+void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
 				
 void TIM1_1_SET_DUTY(int ch,float duty);
 void TIM3_1_SET_DUTY(float duty);

@@ -21,7 +21,7 @@ void DataScope(float num)
 }
 
 void motor_init(){
-	GPIOB_CLK_ENA();
+	GPIOB_CLK_EN;
 	GPIOB_12_OUT_PP();//init gpio AIN1 PA12
 	GPIOB_13_OUT_PP();//init gpio AIN2 PA13
 	TIM3_PWM_INIT_HZ(200,0.2,0,0,1,0);//init pwma
