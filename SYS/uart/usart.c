@@ -235,7 +235,7 @@ void Uart4_init(u32 pclk2,u32 bound)
     mantissa<<=4;
     mantissa+=fraction; 
     
-    GPIOC_CLK_ENA();    //enable the gpioa clk
+    GPIOC_CLK_EN    //enable the gpioa clk
 
     RCC->APB2ENR|=1<<19;    //enable usart1 clk
     GPIOC_10_OUT_AFPP();
@@ -259,8 +259,8 @@ void Uart5_init(u32 pclk2,u32 bound)
     mantissa<<=4;
     mantissa+=fraction; 
     
-    GPIOC_CLK_ENA();
-    GPIOD_CLK_ENA();
+    GPIOC_CLK_EN
+    GPIOD_CLK_EN
 
     RCC->APB1ENR|=1<<20;    //enable uart5 clk
     GPIOC_12_OUT_AFPP();      //set C12 AFPP

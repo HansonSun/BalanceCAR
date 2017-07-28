@@ -20,82 +20,82 @@ void Adc1_channel_Init(u8 ad_ch)
 {    
 	switch(ad_ch){
 		case(0):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_0_IN_ANALOG();
 			break;
 		}
 		case(1):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_1_IN_ANALOG();
 			break;
 		}
 		case(2):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_2_IN_ANALOG();
 			break;
 		}
 	  case(3):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_3_IN_ANALOG();
 			break;
 		}
 		case(4):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_4_IN_ANALOG();
 			break;
 		}
 		case(5):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_5_IN_ANALOG();
 			break;
 		}
 		case(6):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_6_IN_ANALOG();
 			break;
 		}
 		case(7):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOA_7_IN_ANALOG();
 			break;
 		}
 		case(8):{
-			GPIOA_CLK_ENA()
+			GPIOA_CLK_EN
 			GPIOB_0_IN_ANALOG();
 			break;
 		}
 	  case(9):{
-			GPIOB_CLK_ENA()
+			GPIOB_CLK_EN
 			GPIOB_1_IN_ANALOG();
 			break;
 		}
 		case(10):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_0_IN_ANALOG();
 			break;
 		}
 		case(11):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_1_IN_ANALOG();
 			break;
 		}
 		case(12):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_2_IN_ANALOG();
 			break;
 		}
 		case(13):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_3_IN_ANALOG();
 			break;
 		}
 		case(14):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_4_IN_ANALOG();
 			break;
 		}
 		case(15):{
-			GPIOC_CLK_ENA()
+			GPIOC_CLK_EN
 			GPIOC_5_IN_ANALOG();
 			break;
 		}

@@ -2,14 +2,6 @@
 #define _GPIO_H_
 #include<stm32f10x.h>
 
-//enable the gpio clock
-#define GPIOA_CLK_ENA() {RCC->APB2ENR|=1<<2;}
-#define GPIOB_CLK_ENA() {RCC->APB2ENR|=1<<3;}
-#define GPIOC_CLK_ENA() {RCC->APB2ENR|=1<<4;}
-#define GPIOD_CLK_ENA() {RCC->APB2ENR|=1<<5;}
-#define GPIOE_CLK_ENA() {RCC->APB2ENR|=1<<6;}
-#define GPIOF_CLK_ENA() {RCC->APB2ENR|=1<<7;}
-#define GPIOG_CLK_ENA() {RCC->APB2ENR|=1<<8;}
 
 //JTAG and SWD Pin Config
 //PA13/JTMS/SWDIO  PA14/JTCK/SWCLK  PA15/JTDI  PB3/JTDO/SWO  PB4/NJTRST

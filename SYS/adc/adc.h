@@ -5,7 +5,7 @@
 #include "adc.h"
 #include "delay.h"
 #include "gpio.h"
-
+#include "sys.h"
 
 u16 Get_Adc_Average(u8 ch,u8 times);
 void Adc1_channel_Init(u8 ad_ch);
