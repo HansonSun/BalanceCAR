@@ -2,8 +2,26 @@
 #include "delay.h"
 
 void open_timer2_ms(float time_ms){
-	u16 set_arr=(u16)(time_ms*10.0)-1;
-	open_timer2(set_arr,7199);
+	u16 psc=0;
+	u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+	open_timer2(arr-1,psc);
 }
 
 void open_timer2(u16 arr,u16 psc){
@@ -20,8 +38,26 @@ void close_timer2(){
 }
 
 void open_timer3_ms(float time_ms){
-	u16 set_arr=(u16)(time_ms*10.0)-1;
-	open_timer3(set_arr,7199);
+	u16 psc=0;
+	u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+	open_timer3(arr-1,psc);
 }
 
 void open_timer3(u16 arr,u16 psc){
@@ -38,8 +74,26 @@ void close_timer3(){
 }
 
 void open_timer4_ms(float time_ms){
-	u16 set_arr=(u16)(time_ms*10.0)-1;
-	open_timer4(set_arr,7199);
+	u16 psc=0;
+	u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+	open_timer4(arr-1,psc);
 }
 
 void open_timer4(u16 arr,u16 psc){
@@ -57,8 +111,27 @@ void close_timer4(){
 
 
 void open_timer5_ms(float time_ms){
-	u16 set_arr=(u16)(time_ms*10.0)-1;
-	open_timer5(set_arr,7199);
+	u16 psc=0;
+	u16 arr=0;	
+    
+    if(time_ms>=100){
+        psc=1999;
+        arr=36*time_ms;
+    }
+    else if(time_ms>=10){
+        psc=119;
+        arr=600*time_ms;
+    }
+    else if(time_ms>=0.909){
+        psc=11;
+        arr=6000*time_ms;
+    }
+    else{
+        psc=0;
+        arr=72000*time_ms;
+    }
+     
+	open_timer5(arr-1,psc);
 }
 
 void open_timer5(u16 arr,u16 psc){

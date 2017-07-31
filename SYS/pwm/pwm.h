@@ -36,20 +36,20 @@
 #define TIM1_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_3_SET_CCR( (u16)((arr+1)*duty) );}
 #define TIM1_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_4_SET_CCR( (u16)((arr+1)*duty) );}
 
-#define TIM2_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_1_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM2_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_2_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM2_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_3_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM2_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_4_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_1_SET_DUTY( duty)  { u16 arr=TIM2->ARR;  TIM2_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_2_SET_DUTY( duty)  { u16 arr=TIM2->ARR;  TIM2_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_3_SET_DUTY( duty)  { u16 arr=TIM2->ARR;  TIM2_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_4_SET_DUTY( duty)  { u16 arr=TIM2->ARR;  TIM2_4_SET_CCR( (u16)((arr+1)*duty) );}
 
-#define TIM3_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_1_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM3_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_2_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM3_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_3_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM3_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_4_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_1_SET_DUTY( duty)  { u16 arr=TIM3->ARR;  TIM3_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_2_SET_DUTY( duty)  { u16 arr=TIM3->ARR;  TIM3_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_3_SET_DUTY( duty)  { u16 arr=TIM3->ARR;  TIM3_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_4_SET_DUTY( duty)  { u16 arr=TIM3->ARR;  TIM3_4_SET_CCR( (u16)((arr+1)*duty) );}
 
-#define TIM4_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_1_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM4_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_2_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM4_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_3_SET_CCR( (u16)((arr+1)*duty) );}
-#define TIM4_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_4_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_1_SET_DUTY( duty)  { u16 arr=TIM4->ARR;  TIM4_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_2_SET_DUTY( duty)  { u16 arr=TIM4->ARR;  TIM4_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_3_SET_DUTY( duty)  { u16 arr=TIM4->ARR;  TIM4_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_4_SET_DUTY( duty)  { u16 arr=TIM4->ARR;  TIM4_4_SET_CCR( (u16)((arr+1)*duty) );}
 
 
 

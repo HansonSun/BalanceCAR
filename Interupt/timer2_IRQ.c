@@ -3,7 +3,7 @@
 
 
 //#define TIM2_FOR_INPUTCAPTURE
-//#define TIM2_FOR_ENCODER
+#define TIM2_FOR_ENCODER
 //#define TIM2_FOR_TIMER
 
 

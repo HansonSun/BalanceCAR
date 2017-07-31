@@ -5,23 +5,22 @@
 #include "DataScope_DP.h"
 #include "adc.h"
 #include "daolibai.h"
+#include "encoder.h"
 
 
 int main()
 {
     SYS_CONFIG();
-    Usart1_init(72,115200);
-    //daolibai_init();
-    // JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
-
-    //TIM1_PWM_INIT(799,0);
-    ///TIM1_ENA_CH(1);
-    ///TIM1_1_SET_CCR(400);
-    
-    TIM1_PWM_INIT_MS(1,0.2,1,1,1,1);
-    
-    
-    while(1);
+	  JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
+		Usart1_init(72,115200); //A9 A10
+    daolibai_init(); //B12  B13 B1
+		Encoder_Init_TIM2(); //A0 A1
+		open_timer4_ms(10);
+		//set_speed(500);
+    while(1){
+			DataScope(position);
+			delay_ms(10);
+		}
 }
 
 

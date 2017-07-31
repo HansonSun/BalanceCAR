@@ -5,7 +5,6 @@
 #include"adc.h"
 
 
-
 u16 Get_Adc(u8 ch)   
 {
 
@@ -139,7 +138,7 @@ void Adc1_channel_Init(u8 ad_ch)
     //该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
 	ADC1->CR2|=1<<2;        //开启AD校准	   
 	while(ADC1->CR2&1<<2);  //等待校准结束
-	//delay_ms(1);
+
 }		
 
 

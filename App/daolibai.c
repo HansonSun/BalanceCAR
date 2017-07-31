@@ -4,9 +4,7 @@
 unsigned char Send_Count; //串口需要发送的数据个数
 unsigned char i,temp;          //计数变量
 
-#define DIR_CounterClockwise() {	PBout(12)=0;PBout(13)=1;}
-#define DIR_Clockwise()  {	PBout(12)=0;PBout(13)=1;}
-#define MOTOR_SPEED(x) TIM3_3_SET_DUTY(x)
+u32 position=10;
 
 
 void DataScope(float num)
@@ -20,30 +18,38 @@ void DataScope(float num)
 		}
 }
 
+
 void motor_init(){
 	GPIOB_CLK_EN;
-	GPIOB_12_OUT_PP();//init gpio AIN1 PA12
-	GPIOB_13_OUT_PP();//init gpio AIN2 PA13
-	TIM3_PWM_INIT_HZ(200,0.2,0,0,1,0);//init pwma
-	
-	GPIOB_14_OUT_PP();//init gpio BIN1 PA14 
-	GPIOB_15_OUT_PP();//init gpio BIN2 PA15
-	TIM3_PWM_INIT_HZ(200,0.5,0,0,0,1);//init pwmb
+	GPIOB_12_OUT_PP();
+	GPIOB_13_OUT_PP();
+	TIM3_PWM_INIT_HZ(200,0.5,0,0,0,1);
+	stop() 
 }
 
 //speed range[0:1000]
-void set_speed(u8 speed){
-    float speed_duty=speed/1000;
-    MOTOR_SPEED(speed_duty);
+void set_speed(int speed){
+		 int set_speed=0;
+		float speed_duty=0;
+		
+	if(speed>=0){
+			set_speed=speed;
+			speed_duty=set_speed*1.0/1000.0;
+			turn_right();
+		}
+		else{
+			set_speed=-speed;
+			speed_duty=set_speed*1.0/1000.0;
+			turn_left();
+			
+		}
+		
+		motor_speed(speed_duty);
+
 }
 
 
 void daolibai_init(){
 	motor_init();
-	PBout(12)=0;
-	PBout(13)=1;
-	PBout(14)=0;
-	PBout(15)=1;
 	Adc1_channel_Init(7);
-
 }

@@ -96,7 +96,7 @@ void print_bin(int uart_num,int bin)
 
 
 
-void newprintf(int uart_num,char* fmt, ...){
+void Uprintf(int uart_num,char* fmt, ...){
     double vargflt = 0;
     int  vargint = 0;
     char* vargpch = NULL;

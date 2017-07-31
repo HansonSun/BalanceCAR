@@ -17,7 +17,7 @@ UART5	 TX:PC12  RX:PD2
 #include "sys.h"
 
 
-void newprintf(int uart_num,char* fmt, ...);
+void Uprintf(int uart_num,char* fmt, ...);
 void print_ch(int uart_num,char ch);
 void print_int(int uart_num,int dec);
 void print_float(int uart_num,double flt);

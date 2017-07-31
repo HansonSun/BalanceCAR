@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS;..\USER;..\HARDWARE;..\App;..\SYS\adc;..\SYS\delay;..\SYS\gpio;..\SYS\misc;..\SYS\pwm;..\SYS\sys;..\SYS\timer;..\SYS\uart;..\UpperComputer;..\Interupt;..\SYS;..\SYS\input_capture</IncludePath>
+              <IncludePath>..\CMSIS;..\USER;..\HARDWARE;..\App;..\SYS\adc;..\SYS\delay;..\SYS\gpio;..\SYS\misc;..\SYS\pwm;..\SYS\sys;..\SYS\timer;..\SYS\uart;..\UpperComputer;..\Interupt;..\SYS;..\SYS\input_capture;..\HARDWARE\encoder</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
