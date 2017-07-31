@@ -155,8 +155,7 @@ void newprintf(int uart_num,char* fmt, ...){
 
 
 
-void Uart1_init(u32 pclk2,u32 bound)
-{
+void Usart1_init(u32 pclk2,u32 bound){
     float temp;
     u16 mantissa;
     u16 fraction;   
@@ -177,8 +176,7 @@ void Uart1_init(u32 pclk2,u32 bound)
 }
 
 
-void Uart2_init(u32 pclk2,u32 bound)
-{
+void Usart2_init(u32 pclk2,u32 bound){
     float temp;
     u16 mantissa;
     u16 fraction;   
@@ -201,8 +199,7 @@ void Uart2_init(u32 pclk2,u32 bound)
 }
 
 
-void Uart3_init(u32 pclk2,u32 bound)
-{
+void Usart3_init(u32 pclk2,u32 bound){
     float temp;
     u16 mantissa;
     u16 fraction;   
@@ -224,8 +221,7 @@ void Uart3_init(u32 pclk2,u32 bound)
 }
 
 
-void Uart4_init(u32 pclk2,u32 bound)
-{
+void Uart4_init(u32 pclk2,u32 bound){
     float temp;
     u16 mantissa;
     u16 fraction;   
@@ -248,8 +244,7 @@ void Uart4_init(u32 pclk2,u32 bound)
 }
 
 
-void Uart5_init(u32 pclk2,u32 bound)
-{
+void Uart5_init(u32 pclk2,u32 bound){
     float temp;
     u16 mantissa;
     u16 fraction;   

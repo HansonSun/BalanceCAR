@@ -31,6 +31,26 @@
 #define TIM4_3_SET_CCR(x) TIM4->CCR3=x
 #define TIM4_4_SET_CCR(x) TIM4->CCR4=x
 
+#define TIM1_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM1_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM1_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM1_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM1_4_SET_CCR( (u16)((arr+1)*duty) );}
+
+#define TIM2_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM2_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM2_4_SET_CCR( (u16)((arr+1)*duty) );}
+
+#define TIM3_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM3_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM3_4_SET_CCR( (u16)((arr+1)*duty) );}
+
+#define TIM4_1_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_1_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_2_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_2_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_3_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_3_SET_CCR( (u16)((arr+1)*duty) );}
+#define TIM4_4_SET_DUTY( duty)  { u16 arr=TIM1->ARR;  TIM4_4_SET_CCR( (u16)((arr+1)*duty) );}
+
 
 
 void TIM1_PWM_INIT(u16 arr,u16 psc);
@@ -53,11 +73,11 @@ void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
 void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
 void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
 				
-void TIM1_1_SET_DUTY(int ch,float duty);
-void TIM3_1_SET_DUTY(float duty);
-void TIM3_2_SET_DUTY(float duty);
-void TIM3_3_SET_DUTY(float duty);
-void TIM3_4_SET_DUTY(float duty);
 
-void TIM1_SET_FREQ(u8 ch,u32 freq);
+
+void TIM1_SET_FREQ(int ch,int freqhz,float duty);
+void TIM2_SET_FREQ(int ch,int freqhz,float duty);
+void TIM3_SET_FREQ(int ch,int freqhz,float duty);
+void TIM4_SET_FREQ(int ch,int freqhz,float duty);
+
 #endif

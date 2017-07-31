@@ -4,10 +4,10 @@
 
 //#define TIM2_FOR_INPUTCAPTURE
 //#define TIM2_FOR_ENCODER
-//#define TIM2_FOR_NORMALUSE
+//#define TIM2_FOR_TIMER
 
 
-#ifdef TIM2_FOR_NORMALUSE
+#ifdef TIM2_FOR_TIMER
 void TIM2_IRQHandler(void)
 { 		    		  			    
 	if(TIM2->SR&0X0001)//update interupt
@@ -17,6 +17,7 @@ void TIM2_IRQHandler(void)
 	TIM2->SR&=~(1<<0);//clear the update interupt flag       
 }
 #endif
+
 
 
 #ifdef TIM2_FOR_ENCODER
@@ -29,6 +30,7 @@ void TIM2_IRQHandler(void)
 	TIM2->SR&=~(1<<0);//clear the update interupt flag       
 }
 #endif
+
 
 #ifdef TIM2_FOR_INPUTCAPTURE
 

@@ -514,6 +514,11 @@
           <GroupName>Interupt</GroupName>
           <Files>
             <File>
+              <FileName>timer1_IRQ.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Interupt\timer1_IRQ.c</FilePath>
+            </File>
+            <File>
               <FileName>timer2_IRQ.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Interupt\timer2_IRQ.c</FilePath>

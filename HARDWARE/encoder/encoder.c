@@ -6,8 +6,7 @@
 
 #include "encoder.h"
 
-void Encoder_Init_TIM1(void)
-{
+void Encoder_Init_TIM1(void){
 	RCC->APB2ENR|=1<<11;     //enable the Tim1 clk
 	RCC->APB2ENR|=1<<2;      //enable the gpioa clk
     
@@ -35,8 +34,7 @@ void Encoder_Init_TIM1(void)
 
 
 
-void Encoder_Init_TIM2(void)
-{
+void Encoder_Init_TIM2(void){
 	RCC->APB1ENR|=1<<0;       //enable the Tim2 clk
 	RCC->APB2ENR|=1<<2;       //enable the gpioa clk
 	GPIOA->CRL&=0XFFFFFF00;   
@@ -63,8 +61,7 @@ void Encoder_Init_TIM2(void)
 	TIM2->CR1 |= 0x01;    //enable the tim2
 }
 
-void Encoder_Init_TIM3(void)
-{
+void Encoder_Init_TIM3(void){
 	RCC->APB1ENR|=1<<1;       //enable the Tim3 clk
 	RCC->APB2ENR|=1<<2;       //enable the gpioa clk
 	GPIOA->CRL&=0XFFFFFFFF;   
@@ -94,8 +91,7 @@ void Encoder_Init_TIM3(void)
 
 
 
-void Encoder_Init_TIM4(void)
-{
+void Encoder_Init_TIM4(void){
 	RCC->APB1ENR|=1<<2;       //enable the Tim2 clk
 	RCC->APB2ENR|=1<<3;       //enable the gpioa clk
 	GPIOB->CRL&=0XFFFFFFFF;   
@@ -126,6 +122,7 @@ void Encoder_Init_TIM4(void)
 
 
 
+
 int Read_Encoder(u8 TIMX){
     int Encoder_TIM;    
     switch(TIMX){
@@ -139,39 +136,9 @@ int Read_Encoder(u8 TIMX){
 }
 
 
-void TIM1_IRQHandler(void)
-{ 		    		  			    
-	if(TIM1->SR&0X0001)//update interupt
-	{
-			    				   				     	    	
-	}				   
-	TIM1->SR&=~(1<<0);//clear the update interupt flag    
-}
 
-void TIM2_IRQHandler(void)
-{ 		    		  			    
-	if(TIM2->SR&0X0001)//update interupt
-	{
-			    				   				     	    	
-	}				   
-	TIM2->SR&=~(1<<0);//clear the update interupt flag       
-}
 
-void TIM3_IRQHandler(void)
-{ 		    		  			    
-	if(TIM3->SR&0X0001)//update interupt
-	{
-			    				   				     	    	
-	}				   
-	TIM3->SR&=~(1<<0);//clear the update interupt flag       
-}
 
-void TIM4_IRQHandler(void)
-{ 		    		  			    
-	if(TIM4->SR&0X0001)//update interupt
-	{
-			    				   				     	    	
-	}				   
-	TIM4->SR&=~(1<<0);//clear the update interupt flag  	    
-}
+
+
 

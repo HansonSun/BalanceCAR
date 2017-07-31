@@ -25,5 +25,9 @@ void print_bin(int uart_num,int bin);
 void print_hex(int uart_num,unsigned int hex); 
 void print_str(int uart_num,char* str); 
 
-
+void Usart1_init(u32 pclk2,u32 bound);
+void Usart2_init(u32 pclk2,u32 bound);
+void Usart3_init(u32 pclk2,u32 bound);
+void Uart4_init(u32 pclk2,u32 bound);
+void Uart5_init(u32 pclk2,u32 bound);
 #endif
