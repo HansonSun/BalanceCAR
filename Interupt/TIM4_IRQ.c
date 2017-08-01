@@ -12,28 +12,32 @@
 int set_pos=3125;
 float p=12;
 float d=4;
-	
+int err=0;
+int setspeed=0;
+int last_err=0;
+int err_sum=0;
+
 void TIM4_IRQHandler(void)
 { 
-	int err=0;
-	int thespeed=0;
 	if(TIM4->SR&0X0001) {
 		TIM4->SR&=~(1<<0);
 		position=Get_Adc_Average(7,10);
 		err=position-set_pos;
+        err_sum+=err;
+        
 		if(err>300 || err<-300)
-			set_speed(thespeed);
+			set_speed(0);
 		else{
 			
-			thespeed=p*err;
-			if(thespeed>=1000)
-				thespeed=1000;
-			else if(thespeed<=-1000)
-				thespeed=-1000;
+			setspeed=p*err+d*(err-last_err);
+			if(setspeed>=1000)
+				setspeed=1000;
+			else if(setspeed<=-1000)
+				setspeed=-1000;
 		
-			set_speed(thespeed);
+			set_speed(setspeed);
 		}
-	
+	last_err=err;
 	}
 
 }

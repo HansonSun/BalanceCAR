@@ -44,6 +44,14 @@ void SYS_CONFIG(void);
 #define TIM4_CLK_EN     RCC->APB1ENR|=1<<2;
 #define TIM3_CLK_EN     RCC->APB1ENR|=1<<1;
 #define TIM2_CLK_EN     RCC->APB1ENR|=1<<0;
+//----------------------------------------------------------------------//
+#GPIOA 0
+#GPIOB 1
+#GPIOC 2
+#GPIOD 3
+#GPIOE 4
+#GPIOF 5
+#GPIOG 6
 
 
 

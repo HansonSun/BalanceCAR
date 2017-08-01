@@ -11,16 +11,15 @@
 int main()
 {
     SYS_CONFIG();
-	  JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
-		Usart1_init(72,115200); //A9 A10
-    daolibai_init(); //B12  B13 B1
-		Encoder_Init_TIM2(); //A0 A1
-		open_timer4_ms(10);
-		//set_speed(500);
+    JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
+    Usart1_init(72,115200);  //A9 A10
+    daolibai_init();         //B12 B13 B1
+    Encoder_Init_TIM2();     //A0 A1
+    open_timer4_ms(10);
     while(1){
-			DataScope(position);
-			delay_ms(10);
-		}
+        DataScope(position);
+        delay_ms(10);
+    }
 }
 
 

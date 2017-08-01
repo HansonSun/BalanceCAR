@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS;..\USER;..\HARDWARE;..\App;..\SYS\adc;..\SYS\delay;..\SYS\gpio;..\SYS\misc;..\SYS\pwm;..\SYS\sys;..\SYS\timer;..\SYS\uart;..\UpperComputer;..\Interupt;..\SYS;..\SYS\input_capture;..\HARDWARE\encoder</IncludePath>
+              <IncludePath>..\CMSIS;..\USER;..\HARDWARE;..\App;..\SYS\adc;..\SYS\delay;..\SYS\gpio;..\SYS\misc;..\SYS\pwm;..\SYS\sys;..\SYS\timer;..\SYS\uart;..\UpperComputer;..\Interupt;..\SYS;..\SYS\input_capture;..\HARDWARE\encoder;..\SYS\exti</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -453,6 +453,11 @@
               <FileType>1</FileType>
               <FilePath>..\SYS\input_capture\input_capture.c</FilePath>
             </File>
+            <File>
+              <FileName>exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYS\exti\exti.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -514,44 +519,49 @@
           <GroupName>Interupt</GroupName>
           <Files>
             <File>
-              <FileName>timer1_IRQ.c</FileName>
+              <FileName>EXTI_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\timer1_IRQ.c</FilePath>
+              <FilePath>..\Interupt\EXTI_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>timer2_IRQ.c</FileName>
+              <FileName>TIM1_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\timer2_IRQ.c</FilePath>
+              <FilePath>..\Interupt\TIM1_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>timer3_IRQ.c</FileName>
+              <FileName>TIM2_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\timer3_IRQ.c</FilePath>
+              <FilePath>..\Interupt\TIM2_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>timer4_IRQ.c</FileName>
+              <FileName>TIM3_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\timer4_IRQ.c</FilePath>
+              <FilePath>..\Interupt\TIM3_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>timer5_IRQ.c</FileName>
+              <FileName>TIM4_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\timer5_IRQ.c</FilePath>
+              <FilePath>..\Interupt\TIM4_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>uart1_IRQ.c</FileName>
+              <FileName>TIM5_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\uart1_IRQ.c</FilePath>
+              <FilePath>..\Interupt\TIM5_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>uart2_IRQ.c</FileName>
+              <FileName>USART1_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\uart2_IRQ.c</FilePath>
+              <FilePath>..\Interupt\USART1_IRQ.c</FilePath>
             </File>
             <File>
-              <FileName>uart3_IRQ.c</FileName>
+              <FileName>USART2_IRQ.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Interupt\uart3_IRQ.c</FilePath>
+              <FilePath>..\Interupt\USART2_IRQ.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART3_IRQ.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Interupt\USART3_IRQ.c</FilePath>
             </File>
           </Files>
         </Group>
