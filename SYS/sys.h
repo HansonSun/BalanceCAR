@@ -45,15 +45,13 @@ void SYS_CONFIG(void);
 #define TIM3_CLK_EN     RCC->APB1ENR|=1<<1;
 #define TIM2_CLK_EN     RCC->APB1ENR|=1<<0;
 //----------------------------------------------------------------------//
-#GPIOA 0
-#GPIOB 1
-#GPIOC 2
-#GPIOD 3
-#GPIOE 4
-#GPIOF 5
-#GPIOG 6
 
-
+#define GPIO_A 0
+#define GPIO_B 1
+#define GPIO_C 2
+#define GPIO_D 3
+#define GPIO_E 4
+#define GPIO_F 5
 
 
 

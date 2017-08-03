@@ -1,14 +1,17 @@
 #include "daolibai.h"
 #include "pwm.h"
+#include "encoder.h"
 
 unsigned char Send_Count; //串口需要发送的数据个数
 unsigned char i,temp;          //计数变量
 
 u32 position=10;
+u32 spinspeed=9;
 
-void DataScope(float num){   
-		DataScope_Get_Channel_Data( num, 1 );      
-		Send_Count = DataScope_Data_Generate(1);
+void DataScope(float num,float num_2){   
+		DataScope_Get_Channel_Data( num, 1 ); 
+		DataScope_Get_Channel_Data( num_2, 2 ); 	
+		Send_Count = DataScope_Data_Generate(2);
 		for( i = 0 ; i < Send_Count; i++) {
 			while((USART1->SR&0X40)==0);  
 			USART1->DR = DataScope_OutPut_Buffer[i]; 

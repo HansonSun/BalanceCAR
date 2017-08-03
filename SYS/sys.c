@@ -40,7 +40,7 @@ void NVIC_CONFIG(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
    
-    NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 5;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
