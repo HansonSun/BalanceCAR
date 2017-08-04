@@ -115,3 +115,4 @@ void JTAG_MODE_SET(u8 mode)
     AFIO->MAPR&=0XF8FFFFFF;   //clear MAPR[26:24]
     AFIO->MAPR|=(mode<<24);   //set JTAG MODE
 } 
+

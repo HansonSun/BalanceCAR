@@ -3,21 +3,27 @@
 
 #include "stm32f10x.h"
 #include "gpio.h"
-void open_timer2(u16 arr,u16 psc);
-void open_timer2_ms(float time_ms);
-void close_timer2(void);
 
-void open_timer3(u16 arr,u16 psc);
-void open_timer3_ms(float time_ms);
-void close_timer3(void);
+void Tim1_timing_init(u16 arr,u16 psc);
+void Tim1_timing_set_ms(float time_ms);
+void Tim1_timing_close(void);
 
-void open_timer4(u16 arr,u16 psc);
-void open_timer4_ms(float time_ms);
-void close_timer4(void);
 
-void open_timer5(u16 arr,u16 psc);
-void open_timer5_ms(float time_ms);
-void close_timer5(void);
+void Tim2_timing_init(u16 arr,u16 psc);
+void Tim2_timing_set_ms(float time_ms);
+void Tim2_timing_close(void);
+
+void Tim3_timing_init(u16 arr,u16 psc);
+void Tim3_timing_set_ms(float time_ms);
+void Tim2_timing_close(void);
+
+void Tim4_timing_init(u16 arr,u16 psc);
+void Tim4_timing_set_ms(float time_ms);
+void Tim2_timing_close(void);
+
+void Tim5_timing_init(u16 arr,u16 psc);
+void Tim5_timing_set_ms(float time_ms);
+void Tim5_timing_close(void);
 
 
 #endif

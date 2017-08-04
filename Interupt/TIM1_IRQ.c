@@ -4,15 +4,17 @@
 
 //#define TIM1_FOR_INPUTCAPTURE
 //#define TIM1_FOR_ENCODER
-//#define TIM1_FOR_TIMER
+#define TIM1_FOR_TIMING
 
 
-#ifdef TIM1_FOR_TIMER
-void TIM1_IRQHandler(void)
-{ 		    		  			    
+#ifdef TIM1_FOR_TIMING
+void TIM1_UP_IRQHandler(void)
+{ 		  
+     static int flag=0;
 	if(TIM1->SR&0X0001)//update interupt
 	{
-			    				   				     	    	
+			PAout(0)= flag%2;		
+            flag++;        
 	}				   
 	TIM1->SR&=~(1<<0);//clear the update interupt flag       
 }

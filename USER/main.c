@@ -21,11 +21,10 @@ int main()
         delay_ms(10);
     }*/
 		SYS_CONFIG();
-		GPIOD_CLK_EN
-	  GPIOD_13_IN_UP();
-		Usart1_init(72,115200);  //A9 A10
-		exti_init_ft(GPIO_D,13);
-
+        GPIOA_CLK_EN
+        GPIOA_0_OUT_PP();
+        Tim1_timging_set_ms(10);
+        PAout(0)=0;
 		while(1){
 		}
 }
