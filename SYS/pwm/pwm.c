@@ -7,43 +7,43 @@
 #include"pwm.h"
 
 
-void TIM1_PWM_INIT(u16 arr,u16 psc){
+void Tim1_pwm_init(u16 arr,u16 psc){
     RCC->APB2ENR|=1<<11;  //Enable The Timer1 CLK
-    TIM1->ARR=arr;		  //SET Timer1 ARR
-    TIM1->PSC=psc;		  //SET Timer1 PSC	
+    TIM1->ARR=arr;		    //SET Timer1 ARR
+    TIM1->PSC=psc;		    //SET Timer1 PSC	
     TIM1->BDTR|=1<<15;    //set break and dead-time register (timer1 and timer8 only)
     TIM1->CR1=0x0080;     //enable the reload buffer
     TIM1->CR1|=0x01;      //enable the counter 
 }
-void TIM2_PWM_INIT(u16 arr,u16 psc){		 					 
-	RCC->APB1ENR|=1<<0;    //Enable The Timer2 clk
-	TIM2->ARR=arr;		   //SET Timer2 ARR
-	TIM2->PSC=psc;		   //SET Timer2 PSC	
-	TIM2->CR1=0x0080;      //enable the reload buffer
-	TIM2->CR1|=0x01;       //enable the counter    											  
+void Tim2_pwm_init(u16 arr,u16 psc){		 					 
+	  RCC->APB1ENR|=1<<0;    //Enable The Timer2 clk
+	  TIM2->ARR=arr;		     //SET Timer2 ARR
+	  TIM2->PSC=psc;		     //SET Timer2 PSC	
+	  TIM2->CR1=0x0080;      //enable the reload buffer
+	  TIM2->CR1|=0x01;       //enable the counter    											  
 } 
 
-void TIM3_PWM_INIT(u16 arr,u16 psc){		 					 
-	RCC->APB1ENR|=1<<1;     //Enable The Timer3 clk
-	TIM3->ARR=arr;			//SET Timer3 ARR
-	TIM3->PSC=psc;			//SET Timer3 PSC
-	TIM3->CR1=0x0080;   	//enable the reload buffer
-	TIM3->CR1|=0x01;        //enable the counter    											  
+void Tim3_pwm_init(u16 arr,u16 psc){		 					 
+	 RCC->APB1ENR|=1<<1;     //Enable The Timer3 clk
+	 TIM3->ARR=arr;			     //SET Timer3 ARR
+	 TIM3->PSC=psc;			     //SET Timer3 PSC
+	 TIM3->CR1=0x0080;   	   //enable the reload buffer
+	 TIM3->CR1|=0x01;        //enable the counter    											  
 } 
 
-void TIM4_PWM_INIT(u16 arr,u16 psc){		 					 
-	RCC->APB1ENR|=1<<2;     //Enable The Timer4 clk
-	TIM4->ARR=arr;			//SET Timer4 ARR
-	TIM4->PSC=psc;			//SET Timer4 PSC
-	TIM4->CR1=0x0080;   	//enable the reload buffer
-	TIM4->CR1|=0x01;  		//enable the counter    											  
+void Tim4_pwm_init(u16 arr,u16 psc){		 					 
+	 RCC->APB1ENR|=1<<2;     //Enable The Timer4 clk
+	 TIM4->ARR=arr;			     //SET Timer4 ARR
+	 TIM4->PSC=psc;			     //SET Timer4 PSC
+	 TIM4->CR1=0x0080;   	   //enable the reload buffer
+	 TIM4->CR1|=0x01;  		   //enable the counter    											  
 } 
 
 
 
-void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
-	u16 psc=0;
-    u16 arr=0;	
+void Tim1_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
+	 u16 psc=0;
+   u16 arr=0;	
     
     if(time_ms>=100){
         psc=1999;
@@ -62,7 +62,7 @@ void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
         arr=72000*time_ms;
     }
      
-    TIM1_PWM_INIT(arr-1,psc);
+    Tim1_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM1_ENA_CH(1);
 		TIM1_1_SET_CCR(arr*duty);
@@ -81,7 +81,7 @@ void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	}
 }
 
-void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
+void Tim2_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	u16 psc=0;
     u16 arr=0;	
     
@@ -102,7 +102,7 @@ void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
         arr=72000*time_ms;
     }
      
-    TIM2_PWM_INIT(arr-1,psc);
+    Tim2_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM2_ENA_CH(1);
 		TIM2_1_SET_CCR(arr*duty);
@@ -121,7 +121,7 @@ void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	}
 }
 
-void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
+void Tim3_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	u16 psc=0;
     u16 arr=0;	
     
@@ -142,7 +142,7 @@ void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
         arr=72000*time_ms;
     }
      
-    TIM3_PWM_INIT(arr-1,psc);
+    Tim3_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM3_ENA_CH(1);
 		TIM3_1_SET_CCR(arr*duty);
@@ -161,7 +161,7 @@ void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	}
 }
 
-void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
+void Tim4_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 	u16 psc=0;
     u16 arr=0;	
     
@@ -182,7 +182,7 @@ void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
         arr=72000*time_ms;
     }
      
-    TIM4_PWM_INIT(arr-1,psc);
+    Tim4_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM4_ENA_CH(1);
 		TIM4_1_SET_CCR(arr*duty);
@@ -202,7 +202,7 @@ void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4){
 }
 
 
-void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+void Tim1_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
     u16 psc=0;
     u16 arr=0;	
     
@@ -223,7 +223,7 @@ void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
         arr=72000000/freqhz;
     }
      
-    TIM1_PWM_INIT(arr-1,psc);
+    Tim1_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM1_ENA_CH(1);
 		TIM1_1_SET_CCR(arr*duty);
@@ -242,7 +242,7 @@ void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
 	}
 }
 
-void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+void Tim2_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
     u16 psc=0;
     u16 arr=0;	
     
@@ -263,7 +263,7 @@ void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
         arr=72000000/freqhz;
     }
      
-    TIM2_PWM_INIT(arr-1,psc);
+    Tim2_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM2_ENA_CH(1);
 		TIM2_1_SET_CCR(arr*duty);
@@ -283,7 +283,7 @@ void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
 }
 
 
-void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+void Tim3_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
     u16 psc=0;
     u16 arr=0;	
     
@@ -304,7 +304,7 @@ void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
         arr=72000000/freqhz;
     }
      
-    TIM3_PWM_INIT(arr-1,psc);
+    Tim3_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM3_ENA_CH(1);
 		TIM3_1_SET_CCR(arr*duty);
@@ -324,7 +324,7 @@ void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
 }
 
 
-void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
+void Tim4_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
     u16 psc=0;
     u16 arr=0;	
     
@@ -345,7 +345,7 @@ void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4){
         arr=72000000/freqhz;
     }
      
-    TIM4_PWM_INIT(arr-1,psc);
+    Tim4_pwm_init(arr-1,psc);
 	if(ch1==1){
 		TIM4_ENA_CH(1);
 		TIM4_1_SET_CCR(arr*duty);
@@ -517,165 +517,6 @@ void TIM4_ENA_CH(int ch){
 		}
 	}
 }
-
-
-void TIM1_SET_FREQ(int ch,int freqhz,float duty){
-    u16 psc=0;
-    u16 arr=0;	
-    
-    if(freqhz<=10){
-        psc=1999;
-        arr=36000/freqhz;
-    }
-    else if(freqhz<=100){
-        psc=119;
-        arr=600000/freqhz;
-    }
-    else if(freqhz<=1100){
-        psc=11;
-        arr=6000000/freqhz;
-    }
-    else{
-        psc=0;
-        arr=72000000/freqhz;
-    }
-    
-    TIM1->ARR=arr-1;		  //SET Timer1 ARR
-    TIM1->PSC=psc;		     //SET Timer1 PSC	
-
-	if(ch==1){
-		TIM1_1_SET_CCR(arr*duty);
-	}
-	if(ch==2){
-		TIM1_2_SET_CCR(arr*duty);
-	}
-	if(ch==3){
-		TIM1_3_SET_CCR(arr*duty);
-	}
-	if(ch==4){
-		TIM1_4_SET_CCR(arr*duty);
-	}
-}
-
-
-void TIM2_SET_FREQ(int ch,int freqhz,float duty){
-    u16 psc=0;
-    u16 arr=0;	
-    
-    if(freqhz<=10){
-        psc=1999;
-        arr=36000/freqhz;
-    }
-    else if(freqhz<=100){
-        psc=119;
-        arr=600000/freqhz;
-    }
-    else if(freqhz<=1100){
-        psc=11;
-        arr=6000000/freqhz;
-    }
-    else{
-        psc=0;
-        arr=72000000/freqhz;
-    }
-    
-    TIM2->ARR=arr-1;		  //SET Timer1 ARR
-    TIM2->PSC=psc;		  //SET Timer1 PSC	
-
-	if(ch==1){
-		TIM2_1_SET_CCR(arr*duty);
-	}
-	if(ch==2){
-		TIM2_2_SET_CCR(arr*duty);
-	}
-	if(ch==3){
-		TIM2_3_SET_CCR(arr*duty);
-	}
-	if(ch==4){
-		TIM2_4_SET_CCR(arr*duty);
-	}
-}
-
-
-
-void TIM3_SET_FREQ(int ch,int freqhz,float duty){
-    u16 psc=0;
-    u16 arr=0;	
-    
-    if(freqhz<=10){
-        psc=1999;
-        arr=36000/freqhz;
-    }
-    else if(freqhz<=100){
-        psc=119;
-        arr=600000/freqhz;
-    }
-    else if(freqhz<=1100){
-        psc=11;
-        arr=6000000/freqhz;
-    }
-    else{
-        psc=0;
-        arr=72000000/freqhz;
-    }
-    
-    TIM3->ARR=arr-1;		  //SET Timer1 ARR
-    TIM3->PSC=psc;		  //SET Timer1 PSC	
-
-	if(ch==1){
-		TIM3_1_SET_CCR(arr*duty);
-	}
-	if(ch==2){
-		TIM3_2_SET_CCR(arr*duty);
-	}
-	if(ch==3){
-		TIM3_3_SET_CCR(arr*duty);
-	}
-	if(ch==4){
-		TIM3_4_SET_CCR(arr*duty);
-	}
-}
-
-void TIM4_SET_FREQ(int ch,int freqhz,float duty){
-    u16 psc=0;
-    u16 arr=0;	
-    
-    if(freqhz<=10){
-        psc=1999;
-        arr=36000/freqhz;
-    }
-    else if(freqhz<=100){
-        psc=119;
-        arr=600000/freqhz;
-    }
-    else if(freqhz<=1100){
-        psc=11;
-        arr=6000000/freqhz;
-    }
-    else{
-        psc=0;
-        arr=72000000/freqhz;
-    }
-    
-    TIM4->ARR=arr-1;		  //SET Timer1 ARR
-    TIM4->PSC=psc;		  //SET Timer1 PSC	
-
-	if(ch==1){
-		TIM4_1_SET_CCR(arr*duty);
-	}
-	if(ch==2){
-		TIM4_2_SET_CCR(arr*duty);
-	}
-	if(ch==3){
-		TIM4_3_SET_CCR(arr*duty);
-	}
-	if(ch==4){
-		TIM4_4_SET_CCR(arr*duty);
-	}
-}
-
-
-
 
 
 

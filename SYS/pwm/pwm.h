@@ -53,31 +53,27 @@
 
 
 
-void TIM1_PWM_INIT(u16 arr,u16 psc);
-void TIM2_PWM_INIT(u16 arr,u16 psc);
-void TIM3_PWM_INIT(u16 arr,u16 psc);
-void TIM4_PWM_INIT(u16 arr,u16 psc);
+void Tim1_pwm_init(u16 arr,u16 psc);
+void Tim2_pwm_init(u16 arr,u16 psc);
+void Tim3_pwm_init(u16 arr,u16 psc);
+void Tim4_pwm_init(u16 arr,u16 psc);
 
 void TIM1_ENA_CH(int ch);
 void TIM2_ENA_CH(int ch);
 void TIM3_ENA_CH(int ch);
 void TIM4_ENA_CH(int ch);
 
-void TIM1_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM2_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM3_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
-void TIM4_PWM_INIT_MS(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
+void Tim1_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
+void Tim2_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
+void Tim3_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
+void Tim4_pwm_set_ms(float time_ms,float duty,u8 ch1,u8 ch2 ,u8 ch3,u8 ch4);
 
-void TIM1_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
-void TIM2_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
-void TIM3_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
-void TIM4_PWM_INIT_HZ(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void Tim1_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void Tim2_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void Tim3_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
+void Tim4_pwm_set_hz(u32 freqhz,float duty,u8 ch1,u8 ch2,u8 ch3,u8 ch4);
 				
 
 
-void TIM1_SET_FREQ(int ch,int freqhz,float duty);
-void TIM2_SET_FREQ(int ch,int freqhz,float duty);
-void TIM3_SET_FREQ(int ch,int freqhz,float duty);
-void TIM4_SET_FREQ(int ch,int freqhz,float duty);
 
 #endif

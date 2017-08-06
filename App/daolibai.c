@@ -23,7 +23,7 @@ void motor_init(){
 	GPIOB_CLK_EN;
 	GPIOB_12_OUT_PP();
 	GPIOB_13_OUT_PP();
-	TIM3_PWM_INIT_HZ(200,0.5,0,0,0,1);
+	Tim3_pwm_set_hz(200,0.5,0,0,0,1);
 	stop() 
 }
 
