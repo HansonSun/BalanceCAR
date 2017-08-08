@@ -93,163 +93,203 @@ void Adc_Singlechannel_Gpio_Init(int ch){
 }
 
 
+void adc_set_sequence(int ch){
+		if(ch<=6 && ch >=1){
+				ADC1->SQR1&=(0X1F)<<((ch%7)*5);
+				ADC1->SQR1|=(ch)<<((ch%7)*5);
+		}
+		else if(ch<=12 && ch >=7){
+				ADC1->SQR2&=(0X1F)<<((ch%7)*5);
+				ADC1->SQR2|=(ch)<<((ch%7)*5);
+		}
+		else if(ch<=16 && ch>=13){
+				ADC1->SQR1&=(0X1F)<<((ch%13)*5);
+				ADC1->SQR1|=(ch)<<((ch%13)*5);
+		}
 
+} 
 
 u16 Get_Adc(u8 ch)   
 {
 
 	ADC1->SQR3&=0XFFFFFFE0;//规则序列1 通道ch
 	ADC1->SQR3|=ch;		  			    
-	ADC1->CR2|=1<<22;       //启动规则转换通道 
+//	ADC1->CR2|=1<<22;       //启动规则转换通道 
 	while(!(ADC1->SR&1<<1));//等待转换结束	 	   
 	return ADC1->DR;		//返回adc值	
 }
 
-Adc1_Multichannel_repeat(int channel_cnt,...){
+
+void Adc1_Multichannel_repeat(int channel_cnt,...){
 		va_list vaptr;
+		int i;
 		int ad_ch;
-		va_start(vaptr,channel_cnt);
+		va_start(vaptr,channel_cnt); //get ad channel num
 	
-		ADC1->SQR1&=~(0XF<<20);  //define the the conversion num
-		ADC1->SQR1&=(channel_cnt-1)<<20;  
+		ADC1->SQR1&=~(0XF<<20);  
+		ADC1->SQR1|=(channel_cnt-1)<<20;  //define the the conversion num
 	
-	
-		RCC->APB2ENR|=1<<9;    //enable the ADC1 clk	  
+		RCC->APB2ENR|=1<<9;    //enable the ADC1 clk	
+  
 		RCC->APB2RSTR|=1<<9;   //reset ADC1
 		RCC->APB2RSTR&=~(1<<9);   
+	
 		RCC->CFGR&=~(3<<14);   //set  the adc freq  12M
 		RCC->CFGR|=2<<14; 
 	
-	
-	
 		ADC1->CR1&=0XF0FFFF;   
-		ADC1->CR1&=~(0xf<<16);      //set adc Independent mode 
+		ADC1->CR1&=~(0xf<<16);  //set adc Independent mode 
 		ADC1->CR1|=1<<8;    		//enable the scan  
 			
-		ADC1->CR2&=~(1<<1);    //Continuous conversion
-		ADC1->CR2&=~(7<<17);	    
+		ADC1->CR2|=(1<<1);    //Continuous conversion    
 		ADC1->CR2|=7<<17;	   //SWSTART
 		ADC1->CR2|=1<<20;      //Conversion on external event enabled
 		ADC1->CR2&=~(1<<11);   //Right alignment of data 
 	
-	
-		for(ad_ch=0; ad_ch<number;ad_ch++)
+		for(i=0; i<channel_cnt;i++)
 	  {
-		    channel=va_arg(vaptr,int);
-				Adc_Singlechannel_Gpio_Init(channel);
-			
-			
+		    ad_ch=va_arg(vaptr,int);
+				Adc_Singlechannel_Gpio_Init(ad_ch); //init the ad channel gpio
 
-	if(ad_ch<10){
-		unsigned int mask=~(0x7<<(3*ad_ch));
-		ADC1->SMPR2&=mask;//clear the channel
-		ADC1->SMPR2|=7<<21;     //set Sample time to  239.5 cycles
-	}
-	else{
-		unsigned int mask=~(0x7<<(3*(ad_ch%10)));
-		ADC1->SMPR1&=mask;//clear the channel
-		ADC1->SMPR1|=7<<((ad_ch%10)*3);      //set Sample time to  239.5 cycles
-	}
-switch(){
-case
-}
+				if(ad_ch<10){
+						unsigned int mask=~(0x7<<(3*ad_ch));
+						ADC1->SMPR2&=mask;//clear the channel
+						ADC1->SMPR2|=7<<21;     //set Sample time to  239.5 cycles
+				}
+				else{
+						unsigned int mask=~(0x7<<(3*(ad_ch%10)));
+						ADC1->SMPR1&=mask;//clear the channel
+						ADC1->SMPR1|=7<<((ad_ch%10)*3);      //set Sample time to  239.5 cycles
+				}
+				
+				adc_set_sequence(ad_ch);
 	
 	
 		}
 		va_end(vaptr);	
 		
-			ADC1->CR2|=1<<0;	    //开启AD转换器	 
-	ADC1->CR2|=1<<3;        //使能复位校准  
-	while(ADC1->CR2&1<<3);  //等待校准结束 			 
-    //该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
-	ADC1->CR2|=1<<2;        //开启AD校准	   
-	while(ADC1->CR2&1<<2);  //等待校准结束
-
-	
-		
+		ADC1->CR2|=1<<0;	      //开启AD转换器	 
+		ADC1->CR2|=1<<3;        //使能复位校准  
+		while(ADC1->CR2&1<<3);  //等待校准结束 			 
+		//该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
+		ADC1->CR2|=1<<2;        //开启AD校准	   
+		while(ADC1->CR2&1<<2);  //等待校准结束
 }
-Adc1_Multichannel_onece(int channel_cnt,...){
-	
+//the multichannel must use the dma,because the cpu have no time to make conversion for adc
+void Adc1_Multichannel_once(int channel_cnt,...){
 		va_list vaptr;
 		int i;
-		int channel;
-		va_start(vaptr,channel_cnt);
-		for(i=0; i<number;i++)
+		int ad_ch;
+		va_start(vaptr,channel_cnt); //get ad channel num
+	
+		ADC1->SQR1&=~(0XF<<20);  
+		ADC1->SQR1|=(channel_cnt-1)<<20;  //define the the conversion num
+	
+		RCC->APB2ENR|=1<<9;    //enable the ADC1 clk	
+  
+		RCC->APB2RSTR|=1<<9;   //reset ADC1
+		RCC->APB2RSTR&=~(1<<9);   
+	
+		RCC->CFGR&=~(3<<14);   //set  the adc freq  12M
+		RCC->CFGR|=2<<14; 
+	
+		ADC1->CR1&=0XF0FFFF;   
+		ADC1->CR1&=~(0xf<<16);  //set adc Independent mode 
+		ADC1->CR1|=1<<8;    		//enable the scan  
+			
+		ADC1->CR2|=(1<<1);    //Continuous conversion    
+		ADC1->CR2|=7<<17;	   //SWSTART
+		ADC1->CR2|=1<<20;      //Conversion on external event enabled
+		ADC1->CR2&=~(1<<11);   //Right alignment of data 
+	
+		for(i=0; i<channel_cnt;i++)
 	  {
-		    channel=va_arg(vaptr,int);
-				Adc_Singlechannel_Gpio_Init(channel);
-			
-			
-			RCC->APB2ENR|=1<<9;    //enable the adc1 clk	  
-			RCC->APB2RSTR|=1<<9;   //reset ADC1
-			RCC->APB2RSTR&=~(1<<9);   
-			RCC->CFGR&=~(3<<14);   //set  the adc freq  12M
-			RCC->CFGR|=2<<14;      	 
+		    ad_ch=va_arg(vaptr,int);
+				Adc_Singlechannel_Gpio_Init(ad_ch); //init the ad channel gpio
 
-	ADC1->CR1&=0XF0FFFF;   //
-	ADC1->CR1|=0<<16;      //Independent mode 
-	ADC1->CR1&=~(1<<8);    //diaable the scan  
-			
-	ADC1->CR2&=~(1<<1);    //单次转换模式
-	ADC1->CR2&=~(7<<17);	   
-	ADC1->CR2|=7<<17;	   //软件控制转换  
-	ADC1->CR2|=1<<20;      //使用用外部触发(SWSTART)!!!	必须使用一个事件来触发
-	ADC1->CR2&=~(1<<11);   //右对齐	 
-	ADC1->SQR1&=~(0XF<<20);
-	ADC1->SQR1&=0<<20;     //1个转换在规则序列中 也就是只转换规则序列1 			
-
-	if(ad_ch<10){
-		//设置通道7的采样时间
-		unsigned int mask=~(0x7<<(3*ad_ch));
-		ADC1->SMPR2&=mask;//通道7采样时间清空	  
-		ADC1->SMPR2|=7<<21;      //通道7  239.5周期,提高采样时间可以提高精确度	
-	}
-	else{
-		unsigned int mask=~(0x7<<(3*(ad_ch%10)));
-		ADC1->SMPR1&=mask;//通道7采样时间清空	  
-		ADC1->SMPR1|=7<<((ad_ch%10)*3);      //通道7  239.5周期,提高采样时间可以提高精确度
-	}
- 
-
-	ADC1->CR2|=1<<0;	    //开启AD转换器	 
-	ADC1->CR2|=1<<3;        //使能复位校准  
-	while(ADC1->CR2&1<<3);  //等待校准结束 			 
-    //该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
-	ADC1->CR2|=1<<2;        //开启AD校准	   
-	while(ADC1->CR2&1<<2);  //等待校准结束
-
+				if(ad_ch<10){
+						unsigned int mask=~(0x7<<(3*ad_ch));
+						ADC1->SMPR2&=mask;//clear the channel
+						ADC1->SMPR2|=7<<21;     //set Sample time to  239.5 cycles
+				}
+				else{
+						unsigned int mask=~(0x7<<(3*(ad_ch%10)));
+						ADC1->SMPR1&=mask;//clear the channel
+						ADC1->SMPR1|=7<<((ad_ch%10)*3);      //set Sample time to  239.5 cycles
+				}
+				
+				adc_set_sequence(ad_ch);
 	
 	
 		}
 		va_end(vaptr);	
 		
-
+		ADC1->CR2|=1<<0;	      //开启AD转换器	 
+		ADC1->CR2|=1<<3;        //使能复位校准  
+		while(ADC1->CR2&1<<3);  //等待校准结束 			 
+		//该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
+		ADC1->CR2|=1<<2;        //开启AD校准	   
+		while(ADC1->CR2&1<<2);  //等待校准结束
+		
 }
-Adc1_Singlechannel_repeat(u8 ch){
 
-}
-
-Adc1_Singlechannel_onece(u8 ch){
-  
-	 		 
-	RCC->APB2ENR|=1<<9;    //ADC1时钟使能	  
-	RCC->APB2RSTR|=1<<9;   //ADC1复位
-	RCC->APB2RSTR&=~(1<<9);//复位结束	    
-	RCC->CFGR&=~(3<<14);   //分频因子清零	
-	//SYSCLK/DIV2=12M ADC时钟设置为12M,ADC最大时钟不能超过14M!
-	//否则将导致ADC准确度下降! 
+void Adc1_Singlechannel_repeat(u8 ad_ch){
+	Adc_Singlechannel_Gpio_Init(ad_ch); //init the ad channel gpio		 
+	RCC->APB2ENR|=1<<9;    		//Enable ADC1 clk	  
+	RCC->APB2RSTR|=1<<9;   		//reset the adc1
+	RCC->APB2RSTR&=~(1<<9);   
+	RCC->CFGR&=~(3<<14);  		//set the adc freq
 	RCC->CFGR|=2<<14;      	 
 
-	ADC1->CR1&=0XF0FFFF;   //工作模式清零
-	ADC1->CR1|=0<<16;      //独立工作模式  
-	ADC1->CR1&=~(1<<8);    //非扫描模式	  
-	ADC1->CR2&=~(1<<1);    //单次转换模式
+	ADC1->CR1&=0XF0FFFF;   //Independent mode  
+	ADC1->CR1&=~(1<<8);    //disable the scan mode
+	ADC1->CR2|=(1<<1);    //Continuous conversion mode   
+	ADC1->CR2|=7<<17;	   //SWSTART 
+	ADC1->CR2|=1<<20;      //Conversion on external event enabled
+	ADC1->CR2&=~(1<<11);   //right align
+	ADC1->SQR1&=~(0XF<<20);//1 conversion		
+
+	if(ad_ch<10){
+		//设置通道7的采样时间
+		unsigned int mask=~(0x7<<(3*ad_ch));
+		ADC1->SMPR2&=mask;//通道7采样时间清空	  
+		ADC1->SMPR2|=7<<21;      //通道7  239.5周期,提高采样时间可以提高精确度	
+	}
+	else{
+		unsigned int mask=~(0x7<<(3*(ad_ch%10)));
+		ADC1->SMPR1&=mask;//通道7采样时间清空	  
+		ADC1->SMPR1|=7<<((ad_ch%10)*3);      //通道7  239.5周期,提高采样时间可以提高精确度
+	}
+	
+	ADC1->SQR3&=0XFFFFFFE0;//规则序列1 通道ch
+	ADC1->SQR3|=ad_ch;		
+ 
+
+	ADC1->CR2|=1<<0;	    //开启AD转换器	 
+	ADC1->CR2|=1<<3;        //使能复位校准  
+	while(ADC1->CR2&1<<3);  //等待校准结束 			 
+    //该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
+	ADC1->CR2|=1<<2;        //开启AD校准	   
+	while(ADC1->CR2&1<<2);  //等待校准结束
+}
+
+void Adc1_Singlechannel_once(u8 ad_ch){
+	
+	Adc_Singlechannel_Gpio_Init(ad_ch); //init the ad channel gpio		 
+	RCC->APB2ENR|=1<<9;    		//Enable ADC1 clk	  
+	RCC->APB2RSTR|=1<<9;   		//ADC1 reset
+	RCC->APB2RSTR&=~(1<<9);   
+	RCC->CFGR&=~(3<<14);  
+	RCC->CFGR|=2<<14;      	 
+
+	ADC1->CR1&=0XF0FFFF;   //Independent mode  
+	ADC1->CR1&=~(1<<8);    //disable the scan mode
+	ADC1->CR2&=~(1<<1);    //Single conversion mode
 	ADC1->CR2&=~(7<<17);	   
-	ADC1->CR2|=7<<17;	   //软件控制转换  
-	ADC1->CR2|=1<<20;      //使用用外部触发(SWSTART)!!!	必须使用一个事件来触发
-	ADC1->CR2&=~(1<<11);   //右对齐	 
-	ADC1->SQR1&=~(0XF<<20);
-	ADC1->SQR1&=0<<20;     //1个转换在规则序列中 也就是只转换规则序列1 			
+	ADC1->CR2|=7<<17;	   //SWSTART 
+	ADC1->CR2|=1<<20;      //Conversion on external event enabled
+	ADC1->CR2&=~(1<<11);   //right align
+	ADC1->SQR1&=~(0XF<<20);//1 conversion		
 
 	if(ad_ch<10){
 		//设置通道7的采样时间
@@ -270,23 +310,35 @@ Adc1_Singlechannel_onece(u8 ch){
     //该位由软件设置并由硬件清除。在校准寄存器被初始化后该位将被清除。 		 
 	ADC1->CR2|=1<<2;        //开启AD校准	   
 	while(ADC1->CR2&1<<2);  //等待校准结束
-
-
 }
 
 
 
-u16 Get_Adc_Average(u8 ch,u8 times)
-{
+u16 Get_Adc_Average(u8 ch,u8 times){
 	u32 temp_val=0;
 	u8 t;
-	for(t=0;t<times;t++)
-	{
+	for(t=0;t<times;t++){
 		temp_val+=Get_Adc(ch);
-	//	delay_us(200);
 	}
 	return temp_val/times;
 } 
 	 
 
+void MYDMA_Config(DMA_Channel_TypeDef*DMA_CHx,u32 cpar,u32 cmar,u16 cndtr){
+	RCC->AHBENR|=1<<0; 
+	delay_ms(5);   					  //wait the dma to stable
+	DMA_CHx->CPAR=cpar;   	  //peripheral address
+	DMA_CHx->CMAR=(u32)cmar;  //memory address
+	DMA1_MEM_LEN=cndtr; 
+	DMA_CHx->CNDTR=cndtr; 
+	DMA_CHx->CCR=0X00000000;  
+	DMA_CHx->CCR|=1<<4;   // Read from peripheral
+	DMA_CHx->CCR|=0<<5;   //Circular mode
+	DMA_CHx->CCR|=0<<6; //Peripheral increment mode
+	DMA_CHx->CCR|=1<<7;   //Memory increment mode
+	DMA_CHx->CCR|=0<<8;   //Peripheral size::8-bits
+	DMA_CHx->CCR|=0<<10;  //Memory size::8-bits
+	DMA_CHx->CCR|=1<<12;  //Channel priority level -->Medium
+	DMA_CHx->CCR&=~(1<<14);  //Memory to memory mode disabled
+}
 

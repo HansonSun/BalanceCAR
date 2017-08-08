@@ -11,22 +11,23 @@
 int main()
 {
     /*SYS_CONFIG();
-    JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
+    //JTAG_MODE_SET(JTAG_DISABLE_SWD_DISABLE);
     Usart1_init(72,115200);  //A9 A10
     daolibai_init();         //B12 B13 B1
     Encoder_Init_TIM2();     //A0 A1
-    open_timer4_ms(1);
+    Tim4_timing_set_ms(1);
     while(1){
         DataScope(position,spinspeed);
         delay_ms(10);
     }*/
-		SYS_CONFIG();
-        GPIOA_CLK_EN
-        GPIOA_0_OUT_PP();
-        Tim1_timging_set_ms(10);
-        PAout(0)=0;
-		while(1){
-		}
+	SYS_CONFIG();
+	Usart1_init(72,115200);  //A9 A10
+	Adc1_Singlechannel_repeat(7);
+	
+	while(1){
+	Uprintf(1,"%d\n",Get_Adc_Average(7,10));	
+	delay_ms(200);
+	}
 }
 
 

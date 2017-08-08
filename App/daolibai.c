@@ -63,5 +63,5 @@ void dead_time_voltage(){
 
 void daolibai_init(){
 	motor_init();
-	Adc1_channel_Init(7);
+	Adc1_Singlechannel_once(7);
 }
