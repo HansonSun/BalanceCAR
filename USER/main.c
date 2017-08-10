@@ -21,12 +21,15 @@ int main()
         delay_ms(10);
     }*/
 	SYS_CONFIG();
-	Usart1_init(72,115200);  //A9 A10
-	Adc1_Singlechannel_repeat(7);
-	
+	Usart1_init(72,115200);  //A9 A10 
+
+	Adc_DMA_MultiChannel_Config( );
+		Adc1_Multichannel_repeat(3,0,1,2);
 	while(1){
-	Uprintf(1,"%d\n",Get_Adc_Average(7,10));	
-	delay_ms(200);
+				Uprintf(1,"adc1:%x\n",ADC1MultiConverted[0]);
+		Uprintf(1,"adc2:%x\n",ADC1MultiConverted[1]);
+		Uprintf(1,"adc3:%x\n",ADC1MultiConverted[2]);
+			delay_ms(1000);
 	}
 }
 

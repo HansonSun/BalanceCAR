@@ -268,6 +268,35 @@ void Uart5_init(u32 pclk2,u32 bound){
 }
 
 
+//usart in dma1 channel4
+void usart_MYDMA_Config(u32 cpar,u32 cmar,u16 cndtr){
+		RCC->AHBENR|=1<<0;				//Enable the dma1  clk
+		delay_ms(5);							//wait for stable
+		DMA1_Channel4->CPAR=cpar; 	 		//set peripheral address register
+		DMA1_Channel4->CMAR=(u32)cmar; 	//set memory address register     	
+		DMA1_Channel4->CNDTR=cndtr;    	//number of data
+		DMA1_Channel4->CCR=0X00000000;	//reset the ccr
+		DMA1_Channel4->CCR|=1<<4;  			//Read from peripheral
+		DMA1_Channel4->CCR|=1<<5;  			//Circular mode disabled
+		DMA1_Channel4->CCR|=0<<6; 			//Peripheral increment mode disabled
+		DMA1_Channel4->CCR|=0<<7; 	 		//Memory increment mode enabled
+		DMA1_Channel4->CCR|=0<<8; 	 		//8-bits Peripheral size
+		DMA1_Channel4->CCR|=0<<10; 			//8-bits Memory size
+		DMA1_Channel4->CCR|=1<<12; 			//Channel priority level
+		DMA1_Channel4->CCR|=0<<14; 			//Memory to memory mode disabled  	
+} 
+
+
+void usart_MYDMA_Enable( )
+{
+	DMA1_Channel4->CCR&=~(1<<0);    //Channel disabled  
+	DMA1_Channel4->CNDTR=1; 
+	DMA1_Channel4->CCR|=1<<0;         //Channel enabled 
+ 
+}	  
+
+ 
+
 
 
 

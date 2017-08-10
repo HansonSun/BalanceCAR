@@ -30,4 +30,8 @@ void Usart2_init(u32 pclk2,u32 bound);
 void Usart3_init(u32 pclk2,u32 bound);
 void Uart4_init(u32 pclk2,u32 bound);
 void Uart5_init(u32 pclk2,u32 bound);
+
+void usart_MYDMA_Config(  u32 cpar,u32 cmar,u16 cndtr);
+void usart_MYDMA_Enable(  );
+
 #endif
